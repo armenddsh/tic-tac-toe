@@ -37,6 +37,7 @@ function checkGame() {
                 r.style.color = "green";
             }
             document.getElementById("player-won").style.color = "green";
+            return;
         } else if (winP2) {     
             document.getElementById("player-won").innerText = `- Player ${cPlayer2} Won -`;
             document.getElementById("next-player").innerText = "";
@@ -44,8 +45,20 @@ function checkGame() {
                 r.style.color = "blue";
             }
             document.getElementById("player-won").style.color = "blue";
+            return;
         }
     }
+
+    const isDraw = checkIfDraw([t1,t2,t3,t4,t5,t6,t7,t8,t9]);
+    if (isDraw) {
+        document.getElementById("player-won").innerText = `- Draw -`;
+        document.getElementById("next-player").innerText = "";
+    }
+}
+
+function checkIfDraw(elements) {
+    return elements.map(f => f.innerText)
+                    .every(f => f !== "");
 }
 
 function showNextPlayer(player) {
