@@ -4,6 +4,7 @@ let player = switchPlayer ? 1 : 2;
 
 const cPlayer1 = "X";
 const cPlayer2 = "O";
+let gameEnded = false;
 
 function checkGame() {
     const t1 = document.getElementById("c1");
@@ -37,6 +38,7 @@ function checkGame() {
                 r.style.color = "green";
             }
             document.getElementById("player-won").style.color = "green";
+            gameEnded = true;
             return;
         } else if (winP2) {     
             document.getElementById("player-won").innerText = `- Player ${cPlayer2} Won -`;
@@ -45,6 +47,7 @@ function checkGame() {
                 r.style.color = "blue";
             }
             document.getElementById("player-won").style.color = "blue";
+            gameEnded = true;
             return;
         }
     }
@@ -72,6 +75,7 @@ function switchPlayers() {
 }
 
 function restart(){
+    gameEnded = false;
     const nElement = document.getElementsByClassName("n");
     for (const el of nElement) {
         el.innerText = "";
@@ -91,6 +95,10 @@ function initialize() {
     const nElement = document.getElementsByClassName("n");
     for (const el of nElement) {
         el.addEventListener("click",(event) => {
+            if (gameEnded) {
+                return;
+            }
+
             const id = event.target.id;
             const el = document.getElementById(id);
             if (el.textContent === "") {
