@@ -105,3 +105,8 @@ body {
     font-weight: bold;
     background-color: #aaa;
 }
+
+#restart:hover {
+    background-color: rgb(153, 153, 153);
+    cursor: pointer;
+}
